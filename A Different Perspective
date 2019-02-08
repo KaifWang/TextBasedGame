@@ -1,0 +1,1770 @@
+<!--Saved by Quest 5.8.6836.13983-->
+<asl version="580">
+  <include ref="English.aslx" />
+  <include ref="Core.aslx" />
+  <game name="Change of Perspective">
+    <gameid>a8416499-c033-4cdb-bbc4-08861cdd0a87</gameid>
+    <version>1.0</version>
+    <firstpublished>2019</firstpublished>
+    <menufont>Georgia, serif</menufont>
+    <attr name="command_newline" type="boolean">false</attr>
+    <author>Jackson Nelson-Gal, Ellis Saupe, Kai Wang</author>
+    <showcommandbar type="boolean">false</showcommandbar>
+    <showlocation type="boolean">false</showlocation>
+    <showpanes type="boolean">false</showpanes>
+    <clearscreenonroomenter />
+    <echocommand type="boolean">false</echocommand>
+    <showdescriptiononenter />
+    <attr name="autodescription_youcango" type="int">3</attr>
+    <attr name="autodescription_description" type="int">2</attr>
+    <attr name="autodescription_youarein_useprefix" type="boolean">false</attr>
+    <autodisplayverbs />
+    <defaultfont>'Times New Roman', Times, serif</defaultfont>
+    <attr name="autodescription_youcansee" type="int">0</attr>
+    <autodescription_youarein_newline />
+    <attr name="autodescription_description_newline" type="boolean">false</attr>
+    <autodescription_youcango_newline />
+    <changeroom_newline />
+    <defaultfontsize type="int">20</defaultfontsize>
+    <enablehyperlinks />
+    <autodescription />
+    <gridmap type="boolean">false</gridmap>
+    <category>Puzzle</category>
+    <description><![CDATA[Something is up with your boyfriend, and you don't have much time to figure out what. Can you find the hidden clues in your home to find out what is really going on before the time runs out?<br/><br/>This text adventure game was made for the Intro to Game Design and Implementation class at Case Western Reserve University for Spring 2019.]]></description>
+    <pov type="object">player</pov>
+    <start type="script">
+      create exit ("Stay", Stay, Yes)
+      create exit ("Replay the game", unsolved, Chapter 1)
+      create exit ("Replay the game", Enter the cave, Chapter 1)
+      create exit ("Replay the game", Enter, Chapter 1)
+    </start>
+    <defaultforeground>Coral</defaultforeground>
+    <defaultbackground>Ivory</defaultbackground>
+  </game>
+  <object name="Chapter 1">
+    <inherit name="editor_room" />
+    <isroom />
+    <descprefix type="string"></descprefix>
+    <objectslistprefix type="string"></objectslistprefix>
+    <description><![CDATA[The Father of Creation, Kair, once had a daughter named Lin. Lin was born a trickster and a deceiver. One day her deceptions grew too much for Kair, and he cast a wicked curse on her - turning her into a hideous snake; however, Kair is not merciless. Every 1000 years, the curse will rest for a period of 5 years, and if Lin can somehow redeem her ways, he will lift the curse from her shoulders.<br/><br/>Are you ready?]]></description>
+    <exitslistprefix type="string"></exitslistprefix>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
+    <onexit type="script">
+    </onexit>
+    <beforeenter type="script">
+      MakeObjectInvisible (Yes)
+      MakeObjectInvisible (Nap)
+      MakeObjectInvisible (Stay)
+      MakeObjectInvisible (Go out)
+    </beforeenter>
+    <object name="Yes">
+      <inherit name="editor_room" />
+      <description><![CDATA[{once:You are Lin. You have been living in a cave right outside of the city of Menxia. For a thousand years, you have had no company. Loneliness racks you, and what hurts you even more is your deep remorse for your deception of your father. After years of introspection, you hate deception more than any other creature in the world. You understand why your father delivered such a cruel punishment, and you wish for an opportunity to redeem yourself.}<br/>{notfirst:...Another thousand years pass...}<br/><br/>Your skin begins to flash bright with light. You shed your scaly, green skin revealing a pale and smooth underneath. Appendages split off from your body and your face morphs into that of a young and beautiful woman. Looking down at the puddle by your feet, you notice a snake-like scar on your forehead. Your 5 years has begun. <br/><br/>It has been a long time since you were last your true self, and you feel tired.<br/><br/>You see your {object:Poster} on the side of the cave wall.<br/><br/>You decide to:<br/>{exit:BranchA}<br/>{exit:BranchB}<br/>]]></description>
+      <alias type="string"></alias>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You decide to</exitslistprefix>
+      <enter type="script">
+        SetObjectFlagOff (Nap, "x")
+      </enter>
+      <beforeenter type="script">
+      </beforeenter>
+      <firstenter type="script">
+      </firstenter>
+      <exit name="BranchA" to="Nap">
+        <prefix type="string"></prefix>
+        <scenery />
+      </exit>
+      <exit name="BranchB" to="Go out">
+        <scenery />
+      </exit>
+      <object name="Poster">
+        <inherit name="editor_object" />
+        <look>“The early bird gets the worm"</look>
+        <scenery type="boolean">false</scenery>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+      </object>
+    </object>
+    <exit name="Exit" to="Yes">
+      <scenery type="boolean">false</scenery>
+    </exit>
+    <object name="Nap">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <description><![CDATA[You take a nap in the cave. Some time later you wake up feeling refreshed and energized.<br/><br/>{exit:goout}<br/>{exit:stay}<br/>]]></description>
+      <alias type="string"></alias>
+      <exitslistprefix type="string"></exitslistprefix>
+      <enter type="script">
+        SetObjectFlagOn (Nap, "x")
+      </enter>
+      <exit name="goout" to="Go out">
+        <scenery />
+      </exit>
+      <exit name="stay" to="Stay">
+        <scenery />
+      </exit>
+    </object>
+    <object name="Stay">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <description>You sit in the cave for another 5 years, you sense a burning power surging through your forehead, and suddenly, you turn back into a snake. You deeply regret not doing anything with your time.</description>
+      <alias type="string"></alias>
+      <exitslistprefix type="string"></exitslistprefix>
+      <beforeenter type="script">
+      </beforeenter>
+    </object>
+    <object name="Go out">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <alias type="string"></alias>
+      <description><![CDATA[You step out of the cave. It’s been a long time since the sun has shone on you. You look around and head into the city of Menxia. <br/>]]></description>
+      <exitslistprefix type="string"></exitslistprefix>
+      <enter type="script">
+      </enter>
+      <beforeenter type="script">
+        MakeObjectInvisible (Explore the City)
+      </beforeenter>
+      <exit to="Explore the City" />
+      <object name="Explore the City">
+        <inherit name="editor_room" />
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <description><![CDATA[You walk around the city, wondering what the heck everything is. You see big machines with four wheels speedily fly by, and you figure it is better not to get in their way. Although it’s been a while, there are still some things that make sense to you- A flashy sign says “THIS IS A BAR”. You decide to walk into the building.<br/>...<br/>]]></description>
+        <alias> </alias>
+        <exitslistprefix type="string"></exitslistprefix>
+        <exit name="to2" to="Chapter 2">
+          <scenery type="boolean">false</scenery>
+          <prefix>Move to</prefix>
+        </exit>
+      </object>
+    </object>
+    <object name="player">
+      <inherit name="editor_object" />
+      <inherit name="editor_player" />
+    </object>
+  </object>
+  <object name="Chapter 2">
+    <inherit name="editor_room" />
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
+    <description><![CDATA[October 2185 marks the end of World War III. Many people have lost their lives and families to the war. Kevin is no exception, losing both of his parents during a raid on his village. The soldiers had mercy on Kevin because he was a child, seeing both parents dying right in front of him left a deep scar in the kid’s little heart. <br/><br/>Are you ready?<br/><br/>{exit:Next2}]]></description>
+    <beforeenter type="script">
+      MakeObjectInvisible (Sure)
+      MakeObjectInvisible (Talk to her)
+      MakeObjectInvisible (Pretend to ignore her)
+    </beforeenter>
+    <exit name="Next2" to="Sure">
+      <scenery />
+    </exit>
+    <object name="Sure">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <description><![CDATA[You are Kevin. It has been 15 years since the end of the war, and you are still haunted by your parents death. You wish you could have done something to save them, but you were just a kid. You loved your parents so much, but you felt completely powerless to control their fate. The loss of your parents has taken its toll on you. Since then, you have become reluctant to build meaningful connections with others, fearing the inevitability of losing them too. Everyone parts ways eventually, due to death or disagreement it doesn't matter, so you've promised yourself to never hand your heart over to anyone again...<br/><br/>On an ordinary Saturday night, you sit at the counter of your favorite bar, alone, as usual. The door pops open and a beautiful lady walks in. There's something different about her. Her posture is odd, almost seductive, and you see a cute birthmark on her forehead. <br/><br/>She sits two seats away from you. {if Nap.x:She looks full of energy.}{if not Nap.x:She looks tired.} You decide to<br/><br/>{exit:talk}<br/>{exit:ignoreher}<br/>]]></description>
+      <exitslistprefix type="string"></exitslistprefix>
+      <alias> </alias>
+      <exit name="ignoreher" to="Pretend to ignore her">
+        <scenery />
+      </exit>
+      <exit name="talk" to="Talk to her">
+        <scenery />
+      </exit>
+    </object>
+    <object name="Talk to her">
+      <inherit name="editor_room" />
+      <alias>  </alias>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <description><![CDATA[You initiate the conversation. You learn that her name is Lin and that her parents died in the war just like yours. She loves tattoos, which explains the snake on her forehead. You avoid telling her you thought it was a birthmark. You find her accent interesting, and notice she structures her sentences in an unusual way. It is almost like you are talking to a person from the 1920s. Nevertheless, you can't stop talking to her. You can feel yourself getting lost in her wonderful hazel eyes. You start seeing each other all the time and eventually you two start dating.<br/>]]></description>
+      <exitslistprefix type="string"></exitslistprefix>
+      <enter type="script">
+        SetObjectFlagOn (Talk to her, "x")
+      </enter>
+      <exit to="Chapter 3">
+        <prefix>Move to</prefix>
+      </exit>
+    </object>
+    <object name="Pretend to ignore her">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <alias> </alias>
+      <description><![CDATA[You try to ignore her, but she noticed you staring. She closes the gap.<br/><br/>You learn that her name is Lin and that her parents died in the war just like yours. She loves tattoos, which explains the snake on her forehead. You avoid telling her you thought it was a birthmark. Her accent is very interesting, and the way she structures her sentences almost seems like she's from the 1920s! Nevertheless, you can't stop talking to her. You can feel yourself getting lost in her wonderful hazel eyes. You start seeing each other all the time and eventually you two start dating.<br/><br/>]]></description>
+      <exitslistprefix type="string"></exitslistprefix>
+      <exit to="Chapter 3">
+        <prefix>Move to</prefix>
+      </exit>
+    </object>
+  </object>
+  <object name="Chapter 3">
+    <inherit name="editor_room" />
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
+    <description><![CDATA[Time flies, almost five years have passed since you and Kevin started dating. {if not Talk to her.x:You are so grateful that you initiated the conversation with him 5 years ago, it felt like destiny pulled you together.}{if Talk to her.x:You are so grateful that he initiated the conversation with you 5 years ago, it feels like you were meant to enter that bar.} <br/><br/>It has been hard adapting to this new world, but you figure it is much better than living alone for thousands of years. Most importantly, you love Kevin so much, and wish with all your heart that he can accept who you truly are.<br/><br/>But you are scared of how he will react. The more you love Kevin, the harder it is for you to confront him about your snake form. <br/><br/>To make matters worse, he has been feeling very distant lately. He frequently goes out with his friends at night, and often doesn't come back until the next morning. You know you do not have much time left, so you want to find out what’s up with him.<br/><br/>It's 6:00 PM on Friday and you just got home from work. Kevin is sitting in the living room. He says he's going out for the weekend with his friends at 7. This is your last chance to confront him before he goes, but you need to figure out why he's been so distant. While he's distracting himself, you decide to snoop around the house looking for any clues.<br/><br/>Are you ready for a puzzle adventure?<br/>]]></description>
+    <exitslistprefix type="string"></exitslistprefix>
+    <enter type="script">
+    </enter>
+    <beforeenter type="script">
+      MakeObjectInvisible (unsolved)
+      MakeObjectInvisible (solved)
+      MakeObjectInvisible (Yes I am ready)
+    </beforeenter>
+    <object name="Yes I am ready">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <alias type="string"></alias>
+      <exitslistprefix type="string"></exitslistprefix>
+      <beforefirstenter type="script">
+      </beforefirstenter>
+      <firstenter type="script">
+        StartPuzzle
+      </firstenter>
+      <exit to="solved">
+        <scenery type="boolean">false</scenery>
+      </exit>
+      <exit to="unsolved" />
+    </object>
+    <object name="solved">
+      <inherit name="editor_room" />
+      <alias> </alias>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <description><![CDATA[Kevin is cheating on you! You are certain of it! You've got more than enough evidence to prove it. After all these years, you can't believe he betrayed you like this. <br/>"This must've been what father wanted," you think to yourself as tears fill your eyes.<br/><br/>You sneak out of the house and run back to your cave to wait for the next thousand years of loneliness.<br/>]]></description>
+      <exitslistprefix type="string"></exitslistprefix>
+      <exit to="Final Chapter">
+        <prefix>Move to</prefix>
+      </exit>
+    </object>
+    <object name="unsolved">
+      <inherit name="editor_room" />
+      <alias> </alias>
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <description><![CDATA[You couldn’t figure out what’s wrong with Kevin before he left for the weekend...<br/><br/>Coming back from his trip Kevin walks in to see a huge 6-foot-long snake lying on the floor of his living room. There are no signs of Lin except for torn scraps of her clothes scattered around the snake.<br/><br/>“Oh my God! You ate my lovely Lin!”<br/><br/>Running out of the house, Kevin calls Animal Control. Soon he sees them carrying the lifeless snake out of the house.<br/><br/>"Good riddance!" He yells. "To think I was falling in love with her. This is what I get for trusting in love."<br/><br/>After that day, Kevin isolated himself, and no one ever saw him again.<br/><br/>(This is the bad ending. Can you find the other two?)<br/>]]></description>
+      <exitslistprefix type="string"></exitslistprefix>
+    </object>
+    <exit to="Yes I am ready" />
+  </object>
+  <object name="Final Chapter">
+    <inherit name="editor_room" />
+    <exitslistprefix type="string"></exitslistprefix>
+    <description><![CDATA[It's about time to head out for the weekend, so you get ready to leave and call out goodbye to Lin. There is no answer. This seems strange to you, so you check out the house. You don't find her anywhere, but you do find a pile of things you've been hiding from her.<br/>"She must've found out about the other girls! Oh no, she probably ran away as well!"<br/><br/>You have been cheating on Lin with a few women over the years. You love her, but you are afraid to admit it to yourself. The cheating was an attempt to distance yourself from her love.<br/><br/>"I'm such an idiot!" you screamed to yourself. "Why did I have to make such a stupid choice. Her leaving isn't love's fault, it's is my fault! I caused her to leave me." You go out searching for her. She'll never be able to forgive you for what you've done, but maybe you can convince her not to leave you. Maybe you can convince her, and admit to yourself, that you love her.<br/><br/>After combing the entirety of the city of Menxia, your search brings you to a large cave on the edge of the city limits. You remember she always loved to stop by here whenever you two would go hiking together.<br/><br/>{if Nap.x:{exit:ExitB}}{if not Nap.x:{exit:ExitA}}]]></description>
+    <usedefaultprefix type="boolean">false</usedefaultprefix>
+    <enter type="script">
+    </enter>
+    <beforeenter type="script">
+      MakeObjectInvisible (Enter the cave)
+      MakeObjectInvisible (Enter)
+    </beforeenter>
+    <object name="Enter the cave">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <description><![CDATA[Lin is sitting on a stone looking at you with sorrowful eyes. Tears pour down your face as you run toward her to hug her. You confess, and you apologize for everything you have done. You tell her how you've come to the realization that you love her more than anything in the world. "It is the first time I've truly loved someone, and I promise I will dedicate my heart to you. Is anything I can do to make things right?"<br/><br/>"Yes. You must trust me." Lin says before explaining everything to you. About her father's curse, about how she is an ancient being, and about how she is a snake. She apologizes for waiting so long to tell you, but this was her last chance.<br/><br/>For a moment you think Lin has gone crazy from grief. That is until Lin begins to change. Her once pale and smooth skin turns green and grows scales. Everything about this woman changes except for the distinct color of her hazel eyes.<br/><br/>You take a step back, astonished from what is in front of you. "You've really been a 6-foot snake all this time?!" You ask. The snake moves its head in a motion you assume was a nod. "I must be the crazy one," you think to yourself as you bend over and kiss the snake.<br/><br/>Her skin flashes bright with light as she transforms back into the form you know and love. You hear a distant voice boom into the cave. "Lin my daughter, you have shown great veracity trust in your admittance. I believe you have suffered long enough and have lifted the curse."<br/><br/>Lin looks at you tears in both your eyes as you embrace and leave the cave to live happily ever after.<br/><br/>(This is the good ending. Can you find the other two?)<br/>]]></description>
+      <exitslistprefix type="string"></exitslistprefix>
+    </object>
+    <object name="Enter">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <description><![CDATA[You see a 6-foot-long snake lying on a stone. You realize your searching is useless and you will never find Lin and get her back. It reminds you of your parents and how you couldn’t help but lose another loved one. You ask the snake to kill you. You confess about your cheating, and you apologize for everything you have done. You finally come to the realization that you love her more than anything in the world.<br/><br/>Head in hands, you await your upcoming death, but it doesn't come. After a few moments, you look up to see the snake staring into your eyes with a warmth and glow you could not expect. It is then that you realize the familiar hazel color of the snake's eyes. <br/><br/>You take a step back, astonished from what is in front of you. "You've really been a 6-foot snake all this time?!" You ask. The snake moves its head in a motion you assume was a nod. "I must be the crazy one," you think to yourself as you bend over and kiss the snake.<br/><br/>You feel a burning sensation in your forehead as your legs become your tail and your arms become your torso. Your skin turns green and scaly as you transform into a snake. Lin coils around you in a snake-like embrace and the two of you stay in the cave to live happily ever after.<br/><br/>(This is the nice ending. Can you find the other two?)<br/>]]></description>
+      <exitslistprefix type="string"></exitslistprefix>
+    </object>
+    <exit name="ExitA" to="Enter the cave">
+      <scenery />
+    </exit>
+    <exit name="ExitB" to="Enter">
+      <scenery />
+    </exit>
+  </object>
+  <object name="House">
+    <inherit name="editor_room" />
+    <object name="Laundry Room">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You can go to the</exitslistprefix>
+      <description><![CDATA[It is a simple and small room with a door at either end. Next to the Garage door are the {object:Washer} and {object:Dryer}. {if player.currentTime<45:The dryer is rumbling.}]]></description>
+      <exit to="Front Hall" />
+      <exit to="Garage" />
+      <object name="Makeup remover">
+        <inherit name="editor_object" />
+        <alias>bottle</alias>
+        <alt type="stringlist">
+          <value>remover</value>
+          <value>makeup remover</value>
+        </alt>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <takemsg>You don't have a reason for your makeup remover.</takemsg>
+        <look type="script">
+          msg ("It's your bottle of makeup remover.")
+          if (not GetBoolean(Shirt, "taken")) {
+            msg ("\"Strange that this is down here. I normally keep it upstairs in the bathroom.\"")
+          }
+          else if (not GetBoolean(Makeup remover, "evidence")) {
+            msg ("\"Kevin must have used this to try and rub off the lipstick smudge!\"")
+            NewEvidence
+            SetObjectFlagOn (Makeup remover, "evidence")
+          }
+          else {
+            msg ("Kevin attempted to rub off the lipstick with this.")
+          }
+        </look>
+      </object>
+      <object name="Dryer">
+        <inherit name="editor_object" />
+        <inherit name="container_closed" />
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <feature_container />
+        <close />
+        <open />
+        <autounlock type="boolean">false</autounlock>
+        <autoopen type="boolean">false</autoopen>
+        <nokeymessage>The dryer is running</nokeymessage>
+        <unlockmessage> </unlockmessage>
+        <lockmessage> </lockmessage>
+        <openmsg>You try opening the door.</openmsg>
+        <turnoff>It's in the middle of a cycle. Why would I turn it off?</turnoff>
+        <look type="script"><![CDATA[
+          if (player.currentTime<45) {
+            msg ("The dryer is currently rumbling with a load of clothes. The timer says "+(45-player.currentTime)+" minutes left.")
+          }
+          else {
+            msg ("The dryer is done.")
+          }
+        ]]></look>
+        <onopen type="script"><![CDATA[
+          if (not player.currentTime<45) {
+            msg ("It opens. There are some clothes inside.")
+            MakeObjectVisible (Clothes)
+          }
+          else {
+            msg ("The door is locked while it's running.")
+            HelperCloseObject (Dryer)
+          }
+        ]]></onopen>
+        <onclose type="script">
+          MakeObjectInvisible (Clothes)
+        </onclose>
+        <object name="Clothes">
+          <inherit name="editor_object" />
+          <scenery />
+          <visible type="boolean">false</visible>
+          <alt type="stringlist">
+            <value>laundry</value>
+          </alt>
+          <look type="script">
+            msg ("Most of the clothes are pinkish in color.")
+            if (not GetBoolean(Shirt, "taken")) {
+              msg ("I'm pretty sure they aren't supposed to be either.")
+            }
+            else if (not GetBoolean(Clothes, "evidence")) {
+              msg ("\"Kevin must have tried to wash the red lipstick off his shirt in the wash! It ruined all our clothes!\"")
+              NewEvidence
+              SetObjectFlagOn (Clothes, "evidence")
+            }
+            else {
+              msg ("Kevin attempted to clean the red lipstick off in the wash.")
+            }
+          </look>
+        </object>
+      </object>
+      <object name="Washer">
+        <inherit name="editor_object" />
+        <look>The washer is empty. There is a {object:Makeup remover} on top of the washer, lying on its side.</look>
+        <alt type="stringlist">
+          <value>laundry machine</value>
+        </alt>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+      </object>
+    </object>
+    <object name="Bathroom">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You can go to the</exitslistprefix>
+      <description>{once:"Ahhh, my beautiful bathroom." This is the only room in the house that both you and Kevin work to keep clean everyday. Though that is pretty easy due to its size. }It's quite a dense room, fitting a {object:Toilet}, {object:Bathroom_sink}, and {object:Shower} into a space of about 25 sq ft.</description>
+      <exit to="Bedroom" />
+      <object name="Bathroom_sink">
+        <inherit name="editor_object" />
+        <inherit name="surface" />
+        <alias>Sink</alias>
+        <feature_container />
+        <contentsprefix>on</contentsprefix>
+        <hidechildren />
+        <listchildren />
+        <listchildrenprefix>On top of it is</listchildrenprefix>
+        <look>The sink is spotless. You and Kevin are meticulous about cleaning the bathroom.</look>
+        <alt type="stringlist">
+          <value>faucet</value>
+        </alt>
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <object name="Benadryl">
+          <inherit name="editor_object" />
+          <feature_usegive />
+          <take />
+          <drop type="boolean">false</drop>
+          <alias>bottle of pills</alias>
+          <look>These pills help Kevin sleep at night.</look>
+          <alt type="stringlist">
+            <value>sleeping pills</value>
+            <value>benadryl</value>
+            <value>pills</value>
+            <value>bottle</value>
+            <value>bottle of sleeping pills</value>
+          </alt>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+          <takemsg>You take the pills.</takemsg>
+          <usedefaultprefix />
+          <useon type="scriptdictionary">
+            <item key="Cup">
+              if (GetBoolean(Cup, "filled")) {
+                if (not GetBoolean(Cup, "drugged")) {
+                  msg ("You place a couple capsules into the water, and they quickly dissolve.")
+                  SetObjectFlagOn (Cup, "drugged")
+                }
+                else {
+                  msg ("The water is already drugged.")
+                }
+              }
+              else {
+                msg ("There is no use for an empty cup here.")
+              }
+            </item>
+          </useon>
+          <selfuseon type="scriptdictionary">
+            <item key="Cup">
+              if (GetBoolean(Cup, "filled")) {
+                if (not GetBoolean(Cup, "drugged")) {
+                  msg ("You place a couple capsules into the water, and they quickly dissolve.")
+                  SetObjectFlagOn (Cup, "drugged")
+                }
+                else {
+                  msg ("The water is already drugged.")
+                }
+              }
+              else {
+                msg ("There is no use for an empty cup here.")
+              }
+            </item>
+          </selfuseon>
+        </object>
+        <object name="Your toothbrush">
+          <inherit name="editor_object" />
+          <look>It's your toothbrush. It is yellow with green strips down the sides of the handle.{once: "The bristles are pretty worn out. Maybe I should get a new one... oh wait, right."}</look>
+          <usedefaultprefix type="boolean">false</usedefaultprefix>
+          <alias>your toothbrush</alias>
+          <alt type="stringlist">
+            <value>your brush</value>
+          </alt>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+        </object>
+        <object name="Kevins Toothbrush">
+          <inherit name="editor_object" />
+          <look>It's Kevin's toothbrush. It's blue with dark blue strips down the side.{once: "That man really loves his blue."}</look>
+          <usedefaultprefix type="boolean">false</usedefaultprefix>
+          <alias>Kevin's toothbrush</alias>
+          <alt type="stringlist">
+            <value>Kevin's brush</value>
+          </alt>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+        </object>
+        <object name="Toothpaste">
+          <inherit name="editor_object" />
+          <look>Our shared toothpaste. There is plenty left in the container.</look>
+          <usedefaultprefix type="boolean">false</usedefaultprefix>
+          <prefix>some</prefix>
+          <alias>toothpaste</alias>
+          <alt type="stringlist">
+            <value>paste</value>
+          </alt>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+        </object>
+      </object>
+      <object name="Shower">
+        <inherit name="editor_object" />
+        <look>The shower is spotless. You and Kevin are meticulous about cleaning the bathroom. It has your and Kevin's shampoos and soap on a little shelf.</look>
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+      </object>
+      <object name="Tank">
+        <inherit name="editor_object" />
+        <inherit name="container_closed" />
+        <scenery />
+        <look>The tank on the back of the toilet. Just as spotless as the rest of the toilet.</look>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <feature_container />
+        <listchildren />
+        <openmsg>You lift the lid off the top of the tank.</openmsg>
+        <closemsg>You place the tank's lid back on.</closemsg>
+        <alt type="stringlist">
+          <value>toilet tank</value>
+        </alt>
+        <object name="Fish">
+          <inherit name="editor_object" />
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+          <look>A small red herring. You don't know what it means, but Kevin must be up to something!</look>
+          <alt type="stringlist">
+            <value>herring</value>
+            <value>red herring</value>
+          </alt>
+        </object>
+      </object>
+      <object name="Toilet">
+        <inherit name="editor_object" />
+        <inherit name="container_closed" />
+        <look>The toilet is spotless. You and Kevin are meticulous about cleaning the bathroom.{if Toilet.isopen: There's nothing in the bowl.}</look>
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <feature_container />
+        <openmsg>You lift the toilet seat up.</openmsg>
+        <closemsg>You lower the toilet seat.</closemsg>
+      </object>
+      <object name="Soap">
+        <inherit name="editor_object" />
+        <scenery />
+        <look>Its the nice smelling soap Kevin always buys.</look>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <takemsg>You don't need soap right now.</takemsg>
+      </object>
+      <object name="Shampoo">
+        <inherit name="editor_object" />
+        <scenery />
+        <look>On the little shelf in the shower are two bottles of shampoo. One is scented with lavender and uses cocoa butter. Not sure why Kevin is so obsessed with it. The other is your cheap 2L bottle you got at a gas station.</look>
+        <alt type="stringlist">
+          <value>shelf</value>
+          <value>shampoos</value>
+        </alt>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <takemsg>You don't need shampoo right now.</takemsg>
+      </object>
+    </object>
+    <object name="Closet">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You can go to the</exitslistprefix>
+      <description>This closet is technically yours too, but Kevin is the one who uses it mainly. Most of the hats, shirts, and shoes in here are his.  There are a few extra hangers on the rack along with the shirts.</description>
+      <exit to="Bedroom" />
+      <object name="Hanger">
+        <inherit name="editor_object" />
+        <take />
+        <drop type="boolean">false</drop>
+        <feature_usegive />
+        <alt type="stringlist">
+          <value>wire hanger</value>
+          <value>hangers</value>
+        </alt>
+        <scenery />
+        <look>A metal coat hanger. The thin metal makes them quite versatile just like a hairpin.</look>
+        <takemsg>You take it off the bar it was hanging from.</takemsg>
+        <alias>hanger</alias>
+        <inventoryverbs type="stringlist">
+          <value>Look at</value>
+          <value>Use</value>
+        </inventoryverbs>
+        <selfuseanything type="script">
+          msg ("Hangers are very versatile, but you can't use one on this.")
+        </selfuseanything>
+        <selfuseon type="scriptdictionary">
+          <item key="Briefcase">
+            if (GetBoolean(Briefcase, "locked")) {
+              SetObjectFlagOff (Briefcase, "locked")
+              RemoveObject (Hanger)
+              msg ("You broke your hanger, but you managed to pick the lock.  The briefcase is open now.")
+            }
+            else {
+              msg ("The briefcase is already unlocked.")
+            }
+          </item>
+        </selfuseon>
+      </object>
+      <object name="Back wall">
+        <inherit name="editor_object" />
+        <inherit name="container_open" />
+        <attr name="feature_usegive" type="boolean">false</attr>
+        <feature_container />
+        <close type="boolean">false</close>
+        <hidechildren />
+        <keycount type="int">1</keycount>
+        <autounlock type="boolean">false</autounlock>
+        <open type="boolean">false</open>
+        <isopen type="boolean">false</isopen>
+        <openmsg type="string"></openmsg>
+        <closemsg> </closemsg>
+        <listchildren type="boolean">false</listchildren>
+        <alt type="stringlist">
+          <value>cavity</value>
+          <value>drywall</value>
+        </alt>
+        <look>{if not Back wall.isopen:A normal looking wall, but the color doesn't seem to match around the recently moved shoes. Maybe Kevin was practicing drywalling?}{if Back wall.isopen:The hole in the wall reveals a cavity.{if not Shirt.taken: Inside is a soggy shirt.}}</look>
+        <scenery />
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <punch>You punch the drywall. It doesn't give, but feels like it might if you hit it more solidly.</punch>
+        <break type="scriptdictionary">
+          <item key="Hammer">
+            HelperOpenObject (Back wall)
+            msg ("You bash in the small section of wall revealing a small cavity within. Looks like this part of the wall was just plaster.")
+          </item>
+        </break>
+        <object name="Shirt">
+          <inherit name="editor_object" />
+          <take />
+          <drop type="boolean">false</drop>
+          <takemsg>Taking a closer look at the shirt you see a red stain on the collar. It looks like lipstick that's been smeared a bit!</takemsg>
+          <not_all />
+          <look>{if not Shirt.taken:Looks like a soggy dress shirt that had been balled up.}{if Shirt.taken:One of Kevin's dress shirts with a lipstick stain on the collar.}</look>
+          <scenery />
+          <visible />
+          <alt type="stringlist">
+            <value>dress shirt</value>
+            <value>soggy shirt</value>
+          </alt>
+          <ontake type="script">
+            SetObjectFlagOn (Shirt, "taken")
+            NewEvidence
+          </ontake>
+        </object>
+      </object>
+      <object name="Shoes">
+        <inherit name="editor_object" />
+        <look>The shoes usually cover the back wall, but looks like someone has moved them out of the way. That's odd. You can't remember the last time you could see the wall.</look>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <takemsg>You're already wearing shoes. You don't need another pair right now.</takemsg>
+      </object>
+      <object name="Shirts">
+        <inherit name="editor_object" />
+        <look>It's mainly Kevin's shirts up on hangers.{once: There is every shade of blue in every style imaginable. Kevin really likes blue.}</look>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <takemsg>They're Kevin's shirts. You don't need any of them.</takemsg>
+      </object>
+      <object name="Hats">
+        <inherit name="editor_object" />
+        <look><![CDATA[There's just <b>way</b> too many baseball caps.{once: "I can't believe Kevin can afford to eat."}]]></look>
+        <alt type="stringlist">
+          <value>caps</value>
+          <value>baseball caps</value>
+        </alt>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <takemsg>They're Kevin's baseball caps. Why would you take them?</takemsg>
+      </object>
+    </object>
+    <object name="Bedroom">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You can go to the</exitslistprefix>
+      <description>Kevin and your bedroom is pretty simplistic. You've got your large {object:Bed}{if Kevin.asleep: with Kevin sleeping soundly on top} and your {object:Dresser}.</description>
+      <exit to="Front Hall" />
+      <exit to="Bathroom" />
+      <exit to="Closet" />
+      <object name="Pillows">
+        <inherit name="editor_object" />
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <look>There are just too many to count. From a glance about half of them are green and half are blue{once: (of course)}.</look>
+        <search>Looking under each pillow, you find nothing useful.</search>
+      </object>
+      <object name="Bed">
+        <inherit name="editor_object" />
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <look>A large king-sized bed. You and Kevin do splurge when it comes to comfort. Maaaaybe you splurged a little too much when it came to how many pillows you have.</look>
+      </object>
+      <object name="Dresser">
+        <inherit name="editor_object" />
+        <inherit name="container_closed" />
+        <feature_container />
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <look>The dresser is made out of a very fancy looking polished mahogany.{once: Kevin inherited it from his grandparents given his parents weren't there to take it...} Kevin's {object:Briefcase} is on top of it.</look>
+        <listchildren />
+        <openmsg>You open the dresser</openmsg>
+        <closemsg>You close the dresser</closemsg>
+        <object name="Kevins clothes">
+          <inherit name="editor_object" />
+          <alias>Kevin's clothes</alias>
+          <scenery />
+          <look>Just some clothes of Kevin's.</look>
+          <search>You rummage through the clothes but find nothing of interest other than his blue underwear.</search>
+          <takemsg>They're Kevin's clothes, you don't need them.</takemsg>
+          <object name="underwear">
+            <inherit name="editor_object" />
+            <scenery />
+            <look>Kevin's blue underwear.</look>
+            <takemsg>You don't need his underwear.</takemsg>
+          </object>
+        </object>
+      </object>
+      <object name="Briefcase">
+        <inherit name="editor_object" />
+        <attr name="feature_container" type="boolean">false</attr>
+        <keycount type="int">1</keycount>
+        <autounlock type="boolean">false</autounlock>
+        <locked type="boolean">false</locked>
+        <close type="boolean">false</close>
+        <open type="boolean">false</open>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <scenery />
+        <autoopen type="boolean">false</autoopen>
+        <alt type="stringlist">
+          <value>work papers</value>
+        </alt>
+        <look type="script"><![CDATA[
+          if (GetBoolean(Briefcase, "locked")) {
+            msg ("The briefcase is locked. The lock looks pretty flimsy, you think you might be able to get it open with some tools.")
+          }
+          else {
+            msg ("There's some work papers and a note that says <br/>password:<br/><br/>Julius +4<br/>hejeoykkh<br/><br/>Kevin is a nerd and often talks about how he hates passwords that are hard to remember. It must be some kind of encryption?<br/>")
+          }
+        ]]></look>
+        <unlock type="script">
+          if (Got(Keys)) {
+            msg ("You try all the keys on the keychain, but none of them fit the simple lock on the briefcase. You'll have to find some other way to open it.")
+          }
+          else {
+            msg ("You don't have any way to unlock it.")
+          }
+        </unlock>
+      </object>
+    </object>
+    <object name="Kitchen">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You can go to the</exitslistprefix>
+      <description>The kitchen is rather large for what's in it. The {object:Fridge} is in the back corner by the {object:Cupboard}. The {object:Kitchen_sink} and counter sit below the long window that stretches from wall to wall.</description>
+      <exit to="Front Hall" />
+      <exit to="Living Room" />
+      <object name="Kitchen_sink">
+        <inherit name="editor_object" />
+        <look>The sink is pristine.</look>
+        <attr name="feature_usegive" type="boolean">false</attr>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+          <value>Use</value>
+        </displayverbs>
+        <drop type="boolean">false</drop>
+        <alias>Kitchen Sink</alias>
+        <alt type="stringlist">
+          <value>sink</value>
+          <value>faucet</value>
+          <value>tap</value>
+        </alt>
+        <givesingle type="script">
+          msg ("You cannot give away your kitchen sink.")
+        </givesingle>
+        <useon type="scriptdictionary" />
+        <selfuseon type="scriptdictionary" />
+      </object>
+      <object name="Fridge">
+        <inherit name="editor_object" />
+        <inherit name="container_open" />
+        <look>{if not Fridge.isopen:Your fridge is closed and covered in useless papers and souvenir magnets.}{if Fridge.isopen:Your fridge door is wide open.}</look>
+        <feature_container />
+        <isopen type="boolean">false</isopen>
+        <openmsg>You open the fridge. You're cold now and a little upset about it.</openmsg>
+        <closemsg>You care about your electric bill so you close the fridge.</closemsg>
+        <listchildren />
+        <alt type="stringlist">
+          <value>refrigerator</value>
+        </alt>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+          <value>Open</value>
+          <value>Close</value>
+        </displayverbs>
+        <addscript type="script">
+          msg ("You could put that in the fridge but it would get cold.")
+        </addscript>
+        <object name="Food">
+          <inherit name="editor_object" />
+          <inherit name="edible" />
+          <feature_edible />
+          <eatmsg>A tasty snack.</eatmsg>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+            <value>Eat</value>
+          </displayverbs>
+          <look>There are a few food items in the fridge, though there is a striking lack of milk.</look>
+          <usedefaultprefix type="boolean">false</usedefaultprefix>
+        </object>
+        <object name="Leftovers">
+          <inherit name="editor_object" />
+          <scenery type="boolean">false</scenery>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+          <usedefaultprefix type="boolean">false</usedefaultprefix>
+          <look type="script">
+            msg ("You see leftovers from a restaurant that you didn't go to. There are 2 different entrees, so Kevin must have gone out to eat with someone else.")
+            if (not GetBoolean(Leftovers, "hasSeen")) {
+              SetObjectFlagOn (Leftovers, "hasSeen")
+              NewEvidence
+            }
+          </look>
+          <eat type="script">
+            msg ("You see leftovers from a restaurant that you didn't go to. There are 2 different entrees, so Kevin must have gone out to eat with someone else.")
+            msg ("You decided against eating the evidence.")
+            if (not GetBoolean(Leftovers, "hasSeen")) {
+              SetObjectFlagOn (Leftovers, "hasSeen")
+              NewEvidence
+            }
+          </eat>
+        </object>
+      </object>
+      <object name="Cupboard">
+        <inherit name="editor_object" />
+        <inherit name="container_open" />
+        <feature_container />
+        <isopen type="boolean">false</isopen>
+        <contentsprefix>in inside</contentsprefix>
+        <openmsg>You open the cupboard.</openmsg>
+        <alt type="stringlist">
+          <value>cabinet</value>
+        </alt>
+        <look>The cupboard's wood is rather new. We replaced it when we did some remodeling last year. {if not Cupboard.isopen:{once:The cupboard is closed. }}There's some space on top of the cupboard, but it's too high for you to see. </look>
+        <listchildren />
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+          <value>Close</value>
+        </displayverbs>
+        <addscript type="script">
+          msg ("Kevin hates it when you put things where they don't belong, so you think again.")
+        </addscript>
+        <object name="Cup">
+          <inherit name="editor_object" />
+          <take />
+          <feature_usegive />
+          <look>A clear plastic cup.{if Cup.filled: It is filled with water.}{if Cup.drugged: You've dissolved some sleeping pills in it.}</look>
+          <alt type="stringlist">
+            <value>glass</value>
+            <value>mug</value>
+          </alt>
+          <inventoryverbs type="stringlist">
+            <value>Look at</value>
+            <value>Use</value>
+          </inventoryverbs>
+          <selfuseanything type="script">
+            msg ("There's no use for the cup here.")
+          </selfuseanything>
+          <drink type="script">
+            if (GetBoolean(Cup, "filled")) {
+              msg ("You drink from the cup.")
+              if (GetBoolean(Cup, "drugged")) {
+                msg ("You get really tired and fall asleep.")
+                Sleep
+                SetObjectFlagOff (Cup, "drugged")
+              }
+              else {
+                msg ("You feel hydrated.")
+              }
+              SetObjectFlagOff (Cup, "filled")
+            }
+            else {
+              msg ("Nothing is in the cup.")
+            }
+          </drink>
+          <fill type="script">
+            if (game.pov.parent = Kitchen) {
+              FillCup
+            }
+            else if (game.pov.parent = Bathroom) {
+              FillCup
+            }
+          </fill>
+          <selfuseon type="scriptdictionary">
+            <item key="Kitchen_sink">
+              FillCup
+            </item>
+            <item key="Bathroom_sink">
+              FillCup
+            </item>
+          </selfuseon>
+          <giveto type="scriptdictionary">
+            <item key="Kevin"><![CDATA[
+              if (not GetBoolean(Kevin, "asleep")) {
+                if (GetBoolean(Cup, "filled")) {
+                  msg ("Kevin gladly takes the cup and returns it to you once he finished.")
+                  SetObjectFlagOn (Kevin, "drank_water")
+                  if (GetBoolean(Cup, "drugged")) {
+                    msg ("\"I'm feeling pretty tired. I think I'll take a quick nap.\"<br/>Kevin walks over to your bedroom.")
+                    MoveObject (Kevin, Bedroom)
+                    SetObjectFlagOn (Kevin, "asleep")
+                    SetObjectFlagOff (Cup, "drugged")
+                  }
+                  SetObjectFlagOff (Cup, "filled")
+                }
+                else {
+                  msg ("He has no use for an empty cup.")
+                }
+              }
+              else {
+                msg ("He is asleep and can't drink.")
+              }
+            ]]></item>
+          </giveto>
+        </object>
+        <object name="Other_items">
+          <inherit name="editor_object" />
+          <alias>other items</alias>
+          <alt type="stringlist">
+            <value>item</value>
+            <value>dish</value>
+            <value>cups</value>
+            <value>plate</value>
+            <value>bowl</value>
+          </alt>
+          <look>There are various other items in the cupboard: cups, plates, bowls, large cups, small cups, tiny cups.</look>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+          <usedefaultprefix type="boolean">false</usedefaultprefix>
+        </object>
+      </object>
+      <object name="Top of Cupboard">
+        <inherit name="editor_object" />
+        <inherit name="surface" />
+        <feature_container />
+        <hidechildren />
+        <look>It's too high up to see anything.</look>
+        <scenery />
+        <alt type="stringlist">
+          <value>cupboard top</value>
+          <value>cabinet top</value>
+          <value>top of cabinet</value>
+        </alt>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <take type="boolean">false</take>
+        <addscript type="script">
+          msg ("It's hard to get up there, you don't want to keep anything above the cupboard")
+        </addscript>
+        <reach type="scriptdictionary">
+          <item key="Step Ladder">
+            msg ("You place the step ladder up against the side of the cupboard and climb up.")
+            if (GetBoolean(Gift, "found")) {
+              msg ("There's nothing up here.")
+            }
+            else {
+              msg ("There's a small wrapped gift. You grab the gift.")
+              SetObjectFlagOn (Gift, "found")
+              AddToInventory (Gift)
+            }
+          </item>
+        </reach>
+        <object name="Gift">
+          <inherit name="editor_object" />
+          <inherit name="container_closed" />
+          <take type="boolean">false</take>
+          <feature_container />
+          <close type="boolean">false</close>
+          <hidechildren />
+          <listchildren type="boolean">false</listchildren>
+          <look>The wrapping paper is red with cute little dogs running around pulling white ribbons with. The dogs are quite cute.</look>
+          <alt type="stringlist">
+            <value>gift</value>
+          </alt>
+          <alias>wrapped gift</alias>
+          <inventoryverbs type="stringlist">
+            <value>Look at</value>
+            <value>Use</value>
+            <value>Drop</value>
+            <value>Open</value>
+          </inventoryverbs>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+            <value>Take</value>
+            <value>Open</value>
+          </displayverbs>
+          <onopen type="script">
+            MoveObject (Necklace, player)
+            msg ("You found a necklace in the box.")
+          </onopen>
+          <ontake type="script">
+          </ontake>
+          <object name="Necklace">
+            <inherit name="editor_object" />
+            <inherit name="wearable" />
+            <take />
+            <attr name="feature_player" type="boolean">false</attr>
+            <feature_wearable />
+            <attr name="wear_layer" type="int">1</attr>
+            <wear_adjverbs />
+            <drop type="boolean">false</drop>
+            <inventoryverbs type="stringlist">
+              <value>Look at</value>
+              <value>Use</value>
+              <value>Wear</value>
+              <value>Remove</value>
+            </inventoryverbs>
+            <look type="script">
+              msg ("It's a very expensive necklace with a ruby in the middle. You hate rubies and Kevin knows that. He must have bought the gift for someone else.")
+              if (not GetBoolean(Necklace, "hasSeen")) {
+                SetObjectFlagOn (Necklace, "hasSeen")
+                NewEvidence
+              }
+            </look>
+          </object>
+        </object>
+      </object>
+      <object name="Papers">
+        <inherit name="editor_object" />
+        <scenery />
+        <look>There are some flyers, dog pictures, and a coupon for a bowling alley in downtown.</look>
+        <alt type="stringlist">
+          <value>coupon</value>
+          <value>flyer</value>
+          <value>picture</value>
+          <value>pictures</value>
+          <value>flyers</value>
+          <value>coupons</value>
+        </alt>
+      </object>
+      <object name="Magnets">
+        <inherit name="editor_object" />
+        <scenery />
+        <look>There are many letter and word magnets you and Kevin use to leave each other messages. One says "We need milk..."</look>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+      </object>
+      <object name="Counter">
+        <inherit name="editor_object" />
+        <alt type="stringlist">
+          <value>counter top</value>
+        </alt>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <scenery />
+        <look>It's a beautiful black marble counter top. Kevin wanted polished hardwood, but you convinced him.</look>
+      </object>
+      <object name="Window">
+        <inherit name="editor_object" />
+        <look>It's a beautiful evening out.</look>
+        <alt type="stringlist">
+          <value>windows</value>
+        </alt>
+      </object>
+    </object>
+    <object name="Living Room">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You can go to the</exitslistprefix>
+      <description>{if not Kevin.asleep:Kevin is sitting on the {object:Couch} by the {object:Coffee Table}.}{if Kevin.asleep:It is quite spacious in here. Just me, myself, the {object:Couch}, and my {object:Coffee Table}.}</description>
+      <exit to="Front Hall" />
+      <exit to="Kitchen" />
+      <object name="Couch">
+        <inherit name="editor_object" />
+        <attr name="feature_container" type="boolean">false</attr>
+        <open type="boolean">false</open>
+        <close type="boolean">false</close>
+        <hidechildren type="boolean">false</hidechildren>
+        <isopen type="boolean">false</isopen>
+        <look>The couch has some cushions{if not Kevin.asleep: and a wild Kevin} on it.</look>
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+        <addscript type="script">
+        </addscript>
+      </object>
+      <object name="Couch cushions">
+        <inherit name="editor_object" />
+        <inherit name="container_open" />
+        <feature_container />
+        <open type="boolean">false</open>
+        <isopen />
+        <close type="boolean">false</close>
+        <contentsprefix>under</contentsprefix>
+        <hidechildren />
+        <scenery />
+        <look type="script">
+          if (GetBoolean(Kevin, "asleep")) {
+            msg ("Looking through the couch cushions you find the TV remote and some quarters.")
+          }
+          else {
+            msg ("Kevin is right there. It would be suspicious if you looked in the cushions now.")
+          }
+        </look>
+        <object name="Remote">
+          <inherit name="editor_object" />
+          <drop type="boolean">false</drop>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+          <look type="script">
+            if (not GetBoolean(TV, "off")) {
+              msg ("Must've fallen between there when Kevin got up. You don't feel like watching TV right now, so you switch it off.")
+              SetObjectFlagOn (TV, "off")
+            }
+            else {
+              msg ("Must've fallen between there when Kevin got up.")
+            }
+          </look>
+        </object>
+        <object name="Quarters">
+          <inherit name="editor_object" />
+          <look>A couple quarters. They aren't even the fun ones with US states on the back.</look>
+          <displayverbs type="stringlist">
+            <value>Look at</value>
+          </displayverbs>
+          <take />
+          <alt type="stringlist">
+            <value>coins</value>
+            <value>change</value>
+          </alt>
+          <scenery type="boolean">false</scenery>
+          <takemsg>You pick them up.</takemsg>
+        </object>
+      </object>
+      <object name="Coffee Table">
+        <inherit name="editor_object" />
+        <look>You look at your finely made coffee table and admire the craftsmanship. On top of it is Kevin's {object:Laptop}.</look>
+        <alt type="stringlist">
+          <value>table</value>
+        </alt>
+        <usedefaultprefix type="boolean">false</usedefaultprefix>
+      </object>
+      <object name="Laptop">
+        <inherit name="editor_object" />
+        <feature_usegive />
+        <alt type="stringlist">
+          <value>computer</value>
+          <value>mac</value>
+          <value>pc</value>
+          <value>linux</value>
+          <value>kevin's laptop</value>
+          <value>kevins laptop</value>
+        </alt>
+        <scenery />
+        <use type="script">
+          if (not GetBoolean(Kevin, "asleep")) {
+            msg ("You can't use the laptop while Kevin is here.")
+          }
+          else {
+            if (GetBoolean(Laptop, "LoggedOut")) {
+              msg ("It prompts you for a password.")
+              get input {
+                if (result="liniscool") {
+                  msg ("You've logged in! There are some messages open on the laptop. You should look at the laptop and read them.")
+                  SetObjectFlagOff (Laptop, "LoggedOut")
+                }
+                else {
+                  msg ("Incorrect password.")
+                }
+              }
+            }
+            else {
+              msg ("You've logged in already. You don't want to change anything else or Kevin might notice. You can look at the laptop and see his messages.")
+            }
+          }
+        </use>
+        <look type="script">
+          if (GetBoolean(Laptop, "LoggedOut")) {
+            msg ("Kevin's laptop is open here. It's on but you need to log in.")
+          }
+          else {
+            if (GetBoolean(Laptop, "hasSeen")) {
+              msg ("You read the messages again. You're so angry with Kevin.")
+            }
+            else {
+              SetObjectFlagOn (Laptop, "hasSeen")
+              msg ("Some messages from a girl are open. You're more convinced that he's cheating.")
+              NewEvidence
+            }
+          }
+        </look>
+        <loginto type="script">
+          if (not GetBoolean(Kevin, "asleep")) {
+            msg ("You can't use the laptop while Kevin is here.")
+          }
+          else {
+            if (GetBoolean(Laptop, "LoggedOut")) {
+              msg ("It prompts you for a password.")
+              get input {
+                if (result="liniscool") {
+                  msg ("You've logged in! There are some messages open on the laptop. You should look at the laptop and read them.")
+                  SetObjectFlagOff (Laptop, "LoggedOut")
+                }
+                else {
+                  msg ("Incorrect password.")
+                }
+              }
+            }
+            else {
+              msg ("You've logged in already. You don't want to change anything else or Kevin might notice. You can look at the laptop and see his messages.")
+            }
+          }
+        </loginto>
+        <login type="script">
+          if (not GetBoolean(Kevin, "asleep")) {
+            msg ("You can't use the laptop while Kevin is here.")
+          }
+          else {
+            if (GetBoolean(Laptop, "LoggedOut")) {
+              msg ("It prompts you for a password.")
+              get input {
+                if (result="liniscool") {
+                  msg ("You've logged in! There are some messages open on the laptop. You should look at the laptop and read them.")
+                  SetObjectFlagOff (Laptop, "LoggedOut")
+                }
+                else {
+                  msg ("Incorrect password.")
+                }
+              }
+            }
+            else {
+              msg ("You've logged in already. You don't want to change anything else or Kevin might notice. You can look at the laptop and see his messages.")
+            }
+          }
+        </login>
+      </object>
+      <object name="Kevin">
+        <inherit name="editor_object" />
+        <inherit name="namedmale" />
+        <look>{if not Kevin.asleep:He is sitting on the couch watching TV.}{if Kevin.asleep:He is asleep on the bed.}</look>
+        <speak type="script">
+          if (GetBoolean(Kevin, "asleep")) {
+            msg ("He must be really tired. He doesn't wake up when you talk to him")
+          }
+          else {
+            if (GetBoolean(Kevin, "drank_water")) {
+              msg ("\"Anything else I can get you?\" You ask.")
+              msg ("Kevin says \"Can you get me another glass of water?\"")
+            }
+            else {
+              msg ("\Anything I can get you?\" You ask.")
+              msg ("Kevin says \"Can you get me a glass of water?\"")
+            }
+          }
+        </speak>
+        <kill type="script">
+          if (Got(Screwdriver)) {
+            msg ("You consider it for a split second and then put your hand down...")
+          }
+        </kill>
+      </object>
+      <object name="TV">
+        <inherit name="editor_object" />
+        <look>{if not TV.off:Looks like Kevin {if not Kevin.asleep:is}{if Kevin.asleep:was} watching some western film.}{if TV.off:The TV is off.}</look>
+        <scenery />
+        <alt type="stringlist">
+          <value>television</value>
+          <value>telly</value>
+        </alt>
+        <watch>You don't feel like watching TV right now.</watch>
+      </object>
+    </object>
+    <object name="Garage">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You can go to the</exitslistprefix>
+      <description>A reasonably large room containing Kevin's blue {object:Car} and the shelf with his {object:Tool Box}.</description>
+      <exit to="Laundry Room" />
+      <object name="Step Ladder">
+        <inherit name="editor_object" />
+        <take />
+        <not_all />
+        <drop type="boolean">false</drop>
+        <feature_usegive />
+        <look>A ladder with three steps. {once:Useful for reaching high places.}</look>
+        <alt type="stringlist">
+          <value>step</value>
+          <value>ladder</value>
+          <value>stepladder</value>
+        </alt>
+        <inventoryverbs type="stringlist">
+          <value>Look at</value>
+          <value>Use</value>
+        </inventoryverbs>
+        <use type="script">
+          msg ("What do you want to use the ladder with?")
+        </use>
+        <selfuseanything type="script">
+          msg ("You don't think that's worth the effort.")
+        </selfuseanything>
+        <selfuseon type="scriptdictionary">
+          <item key="Top of Cupboard">
+            msg ("You place the step ladder up against the side of the cupboard and climb up.")
+            if (GetBoolean(Gift, "taken")) {
+              msg ("There's nothing up here.")
+            }
+            else {
+              msg ("There's a small wrapped gift. You grab the gift.")
+              AddToInventory (Gift)
+            }
+          </item>
+          <item key="Cupboard">
+            msg ("You place the step ladder up against the side of the cupboard and climb up.")
+            if (GetBoolean(Gift, "taken")) {
+              msg ("There's nothing up here.")
+            }
+            else {
+              msg ("There's a small wrapped gift. You grab the gift.")
+              AddToInventory (Gift)
+            }
+          </item>
+        </selfuseon>
+      </object>
+      <object name="Tool Box">
+        <inherit name="editor_object" />
+        <inherit name="container_open" />
+        <feature_container />
+        <isopen />
+        <look>{once:Up close you can see the red paint of the toolbox is chipping off. }The toolbox is rusted open{if not Screwdriver.taken: with a {object:Screwdriver} inside}.{if not Hammer.taken: There is also a {object:Hammer} next to the box.}</look>
+        <alias>red toolbox</alias>
+        <close type="boolean">false</close>
+        <open type="boolean">false</open>
+        <scenery />
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <alt type="stringlist">
+          <value>shelf</value>
+        </alt>
+        <object name="Screwdriver">
+          <inherit name="editor_object" />
+          <scenery />
+          <look>A small screwdriver. {once:Perfect for screwing, unscrewing, and shiving.}</look>
+          <take />
+          <drop />
+          <feature_usegive />
+          <ontake type="script">
+            SetObjectFlagOn (Screwdriver, "taken")
+          </ontake>
+          <selfuseon type="scriptdictionary">
+            <item key="Briefcase">
+              if (GetBoolean(Briefcase, "locked")) {
+                SetObjectFlagOff (Briefcase, "locked")
+                msg ("You dig at the lock with your screwdriver until you break it. The briefcase is now open.")
+              }
+              else {
+                msg ("There's no use for this here.")
+              }
+            </item>
+          </selfuseon>
+        </object>
+        <object name="Hammer">
+          <inherit name="editor_object" />
+          <take />
+          <drop type="boolean">false</drop>
+          <feature_usegive />
+          <scenery />
+          <look>Quite a solid hammer. {once:It could probably break through a wall if I threw it hard enough.}</look>
+          <inventoryverbs type="stringlist">
+            <value>Look at</value>
+            <value>Use</value>
+          </inventoryverbs>
+          <use type="script">
+            msg ("What do you want to use the hammer on?")
+          </use>
+          <ontake type="script">
+            SetObjectFlagOn (Hammer, "taken")
+          </ontake>
+          <selfuseanything type="script">
+            msg ("That seems a little too aggressive.")
+          </selfuseanything>
+          <selfuseon type="scriptdictionary">
+            <item key="Back wall">
+              HelperOpenObject (Back wall)
+              msg ("You bash in the small section of wall revealing a small cavity within. Looks like this part of the wall was just plaster.")
+            </item>
+            <item key="Briefcase">
+              msg ("You don't want to break the lock, you just want to get it open. ")
+            </item>
+            <item key="Kevin">
+              msg ("Not right now.")
+            </item>
+          </selfuseon>
+        </object>
+      </object>
+      <object name="Car">
+        <inherit name="editor_object" />
+        <inherit name="container_closed" />
+        <inherit name="container_lockable" />
+        <feature_container />
+        <keycount type="int">1</keycount>
+        <autounlock />
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+          <value>Open</value>
+        </displayverbs>
+        <look>A Nissan Rogue belonging to Kevin. {once: He named it Nemo{if Car.locked: and the car is locked}.}{here Step Ladder: You notice a {object:Step Ladder} behind Kevin's car.}</look>
+        <scenery />
+        <listchildren />
+        <alt type="stringlist">
+          <value>Nemo</value>
+          <value>nissan rogue</value>
+        </alt>
+        <key type="object">Keys</key>
+        <object name="Tickets">
+          <inherit name="editor_object" />
+          <take />
+          <drop type="boolean">false</drop>
+          <not_all />
+          <alt type="stringlist">
+            <value>paper</value>
+            <value>papers</value>
+            <value>scraps</value>
+          </alt>
+          <look>Just a couple movie ticket stubs. You would need to take them if you want to read them. </look>
+          <inventoryverbs type="stringlist">
+            <value>Look at</value>
+            <value>Use</value>
+          </inventoryverbs>
+          <usedefaultprefix type="boolean">false</usedefaultprefix>
+          <ontake type="script">
+            msg ("You grab the 2 ticket stubs and read them. The stubs are for a movie that you didn't go to. You check the dates. The movie was at the local theater on a night when Kevin said he was on a business trip.")
+            NewEvidence
+          </ontake>
+        </object>
+      </object>
+      <object name="Workbench">
+        <inherit name="editor_object" />
+        <look>It's a fairly large wooden workbench with a {object:Tool Box} on top. The sides of the desk are starting to splinter.</look>
+        <alt type="stringlist">
+          <value>station</value>
+          <value>workstation</value>
+          <value>bench</value>
+          <value></value>
+          <value>desk</value>
+        </alt>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <scenery />
+      </object>
+    </object>
+    <object name="Front Hall">
+      <inherit name="editor_room" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <exitslistprefix>You can go to the</exitslistprefix>
+      <description><![CDATA[The entrance to your home is rather plain. There is a {object:Coat Rack} and a {object:Dish} by the door, but that is about it.<br/>]]></description>
+      <beforefirstenter type="script">
+      </beforefirstenter>
+      <exit to="Living Room" />
+      <exit to="Bedroom" />
+      <exit to="Laundry Room" />
+      <exit to="Kitchen" />
+      <object name="Coat Rack">
+        <inherit name="editor_object" />
+        <look>A simple coat rack with a single brown leather coat. Like most coat racks, you don't remember buying it or how it got in your house.</look>
+        <drop type="boolean">false</drop>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+      </object>
+      <object name="Coat">
+        <inherit name="editor_object" />
+        <inherit name="surface" />
+        <look><![CDATA[You grab Kevin's brown leather coat and dig through the pockets. Both pockets are stuffed with monopoly money. {once:"You knew it! He <b>was</b> cheating at board game night! I wonder what else he's hiding from me."}]]></look>
+        <drop type="boolean">false</drop>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <attr name="feature_container" type="boolean">false</attr>
+        <listchildren type="boolean">false</listchildren>
+        <hidechildren />
+        <alt type="stringlist">
+          <value>jacket</value>
+          <value>leather</value>
+          <value>pockets</value>
+          <value>pocket</value>
+        </alt>
+        <scenery />
+        <search>Try "look at" instead.</search>
+        <take type="script">
+          msg ("It's Kevin's coat, there's no point in taking it.")
+        </take>
+        <object name="Monopoly money">
+          <inherit name="editor_object" />
+          <look>It's some monopoly money.</look>
+          <alt type="stringlist">
+            <value>money</value>
+            <value>cash</value>
+          </alt>
+        </object>
+      </object>
+      <object name="Dish">
+        <inherit name="editor_object" />
+        <inherit name="surface" />
+        <look>This is the dish where you keep your keys. Kevin's inexplicably large keychain is in the dish.</look>
+        <feature_container />
+        <hidechildren />
+        <contentsprefix>from in on</contentsprefix>
+        <displayverbs type="stringlist">
+          <value>Look at</value>
+        </displayverbs>
+        <addscript type="script">
+          msg ("You don't want to put that in the dish.")
+        </addscript>
+        <object name="Keys">
+          <inherit name="editor_object" />
+          <alt type="stringlist">
+            <value>Kevin's keys</value>
+            <value>keychain</value>
+            <value>car keys</value>
+            <value>house key</value>
+          </alt>
+          <take />
+          <takemsg>You grab Kevin's keychain. You really don't understand why he has so many keys on here. </takemsg>
+          <drop type="boolean">false</drop>
+          <not_all />
+          <feature_usegive />
+          <inventoryverbs type="stringlist">
+            <value>Look at</value>
+            <value>Use</value>
+          </inventoryverbs>
+          <look>They are Kevin's keys. They include his key to the house, his car keys, and like most people's keychains, a lot of other keys he probably hasn't used for at least ten years.</look>
+          <use type="script">
+            msg ("You take the keys out and wave them around. You don't think it opened anything.")
+          </use>
+          <givesingle type="script">
+            msg ("Giving keys away is not a good idea.")
+          </givesingle>
+          <selfuseon type="scriptdictionary">
+            <item key="Car">
+              msg ("Try \"unlock car\"")
+            </item>
+          </selfuseon>
+        </object>
+      </object>
+      <object name="Desk">
+        <inherit name="editor_object" />
+        <look>A small wooden desk by the front door to hold your key dish.</look>
+        <scenery />
+        <alt type="stringlist">
+          <value>table</value>
+        </alt>
+      </object>
+    </object>
+    <object name="watch">
+      <inherit name="editor_object" />
+      <usedefaultprefix type="boolean">false</usedefaultprefix>
+      <prefix>your</prefix>
+      <alt type="stringlist">
+        <value>clock</value>
+        <value>time</value>
+      </alt>
+      <inventoryverbs type="stringlist">
+        <value>Look at</value>
+      </inventoryverbs>
+      <drop type="boolean">false</drop>
+      <displayverbs type="stringlist">
+        <value>Look at</value>
+      </displayverbs>
+      <look type="script">
+        DisplayTime
+      </look>
+      <check type="script">
+        DisplayTime
+      </check>
+    </object>
+  </object>
+  <verb>
+    <property>break</property>
+    <pattern>break</pattern>
+    <defaultexpression>"You can't break " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>reach</property>
+    <pattern>reach</pattern>
+    <defaultexpression>"You can't reach " + object.article + "."</defaultexpression>
+  </verb>
+  <command name="addTime5">
+    <pattern>add time 5</pattern>
+    <script>
+      if (false) {
+        player.currentTime = player.currentTime + 5
+      }
+    </script>
+  </command>
+  <command name="addTime">
+    <pattern>add time</pattern>
+    <script>
+      if (false) {
+        player.currentTime = player.currentTime + 10
+      }
+    </script>
+  </command>
+  <command name="subTime">
+    <pattern>sub time</pattern>
+    <script>
+      if (false) {
+        player.currentTime = player.currentTime - 10
+      }
+    </script>
+  </command>
+  <verb>
+    <property>fill</property>
+    <pattern>fill</pattern>
+    <defaultexpression>"You can't fill " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>watch</property>
+    <pattern>watch</pattern>
+    <defaultexpression>"You can't watch " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>loginto</property>
+    <pattern>login to</pattern>
+    <defaultexpression>"You can't login to " + object.article + "."</defaultexpression>
+  </verb>
+  <command>
+    <pattern>help</pattern>
+    <script><![CDATA[
+      msg ("You can \"go to [room name]\" to enter any rooms<br/>You can \"look at\" most objects with \"look at |object|\"<br/>You can take certain objects with \"take |object|\"<br/>You can open certain objects with \"open |object|\"<br/>You can use certain objects alone with \"use |object|\"<br/>You can use certain objects on other objects with \"use |object1| on |object2|\"<br/>You can give objects to objects with \"give |object1| to |object2|\"<br/>You can unlock certain objects with \"unlock |object|\" or \"use |key| on |object|\"<br/><br/>")
+    ]]></script>
+  </command>
+  <verb>
+    <property>check</property>
+    <pattern>check</pattern>
+    <defaultexpression>"You can't check " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>unlockwithobject</property>
+    <pattern>unlock with object</pattern>
+    <defaultexpression>"You can't unlock with object " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>punch</property>
+    <pattern>punch</pattern>
+    <defaultexpression>"You can't punch " + object.article + "."</defaultexpression>
+  </verb>
+  <verb>
+    <property>login</property>
+    <pattern>log in</pattern>
+    <defaultexpression>"You can't log in " + object.article + "."</defaultexpression>
+  </verb>
+  <command name="inspect">
+    <pattern>inspect</pattern>
+    <script>
+      msg ("Try \"look at\" instead.")
+    </script>
+  </command>
+  <function name="NewEvidence"><![CDATA[
+    set (player, "foundEvidence", player.foundEvidence + 1)
+    if (player.foundEvidence = 1) {
+      plural = " piece"
+    }
+    else {
+      plural = " pieces"
+    }
+    if (player.foundEvidence >= player.targetEvidence) {
+      msg ("You have found " + player.foundEvidence + plural + " of evidence. That is all you need...")
+      SetTimeout (5) {
+        SolvePuzzle
+      }
+    }
+    else {
+      msg ("You have found " + player.foundEvidence + plural + " of evidence.   You have " + (60 - player.currentTime) + " minutes until Kevin leaves.")
+    }
+  ]]></function>
+  <function name="SolvePuzzle">
+    EndPuzzle
+    MoveObject (player, solved)
+  </function>
+  <function name="StartPuzzle">
+    request (Show, "Command")
+    request (Show, "Panes")
+    JS.eval ("compassAccordion.style.display = 'none'")
+    JS.eval ("compassLabel.style.display = 'none'")
+    JS.eval ("placesObjectsAccordion.style.display = 'none'")
+    JS.eval ("placesObjectsLabel.style.display = 'none'")
+    set (game, "enablehyperlinks", false)
+    MoveObject (player, Front Hall)
+    SetObjectFlagOn (Briefcase, "locked")
+    SetObjectFlagOn (Laptop, "LoggedOut")
+    set (player, "foundEvidence", 0)
+    set (player, "currentTime", 0)
+    set (player, "targetEvidence", 5)
+    AddToInventory (watch)
+    EnableTimer (PuzzleTimer)
+    msg ("You can always type \"help\" into the commond prompt to see the possible commands you can use.")
+  </function>
+  <function name="EndPuzzle">
+    request (Hide, "Command")
+    DisableTimer (PuzzleTimer)
+    set (game, "enablehyperlinks", true)
+  </function>
+  <function name="FailPuzzle">
+    EndPuzzle
+    MoveObject (player, unsolved)
+  </function>
+  <function name="GetTime" parameters="timer_time" type="string"><![CDATA[
+    if (timer_time < 10) {
+      return ("6:0"+timer_time+" PM")
+    }
+    else if (timer_time < 60) {
+      return ("6:"+timer_time+" PM")
+    }
+    else {
+      return ("7:00 PM")
+    }
+  ]]></function>
+  <function name="ShouldNotifyPlayer" parameters="time_left" type="boolean"><![CDATA[
+    return (time_left = 30 or time_left = 10 or time_left <= 5)
+  ]]></function>
+  <function name="Sleep"><![CDATA[
+    rand = GetRandomInt (5, 15)
+    if (rand + player.currentTime < 60) {
+      player.currentTime = player.currentTime + rand
+    }
+    else {
+      player.currentTime = 59
+    }
+  ]]></function>
+  <function name="FillCup">
+    if (GetBoolean(Cup, "filled")) {
+      msg ("You empty the cup and fill it with water.")
+      SetObjectFlagOff (Cup, "drugged")
+    }
+    else {
+      msg ("You fill the cup with water.")
+      SetObjectFlagOn (Cup, "filled")
+    }
+  </function>
+  <function name="DisplayTime">
+    msg ("You check your watch.  The time is \""+GetTime(player.currentTime)+"\"")
+  </function>
+  <timer name="PuzzleTimer">
+    <interval>35</interval>
+    <script>
+      set (player, "currentTime", player.currentTime+1)
+      if (ShouldNotifyPlayer(60 - player.currentTime)) {
+        msg ("You check your watch.  The time is \""+GetTime(player.currentTime)+"\"")
+      }
+      if (player.currentTime = 60) {
+        FailPuzzle
+      }
+    </script>
+  </timer>
+</asl>
