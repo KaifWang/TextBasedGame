@@ -2,13 +2,13 @@
 <asl version="580">
   <include ref="English.aslx" />
   <include ref="Core.aslx" />
-  <game name="Change of Perspective">
-    <gameid>a8416499-c033-4cdb-bbc4-08861cdd0a87</gameid>
+  <game name="Different Perspective">
+    <gameid>4a15cd97-6426-4362-ba87-1197d3d90474</gameid>
     <version>1.0</version>
     <firstpublished>2019</firstpublished>
     <menufont>Georgia, serif</menufont>
     <attr name="command_newline" type="boolean">false</attr>
-    <author>Jackson Nelson-Gal, Ellis Saupe, Kai Wang</author>
+    <author>Kai Wang</author>
     <showcommandbar type="boolean">false</showcommandbar>
     <showlocation type="boolean">false</showlocation>
     <showpanes type="boolean">false</showpanes>
@@ -31,6 +31,8 @@
     <gridmap type="boolean">false</gridmap>
     <category>Puzzle</category>
     <description><![CDATA[Something is up with your boyfriend, and you don't have much time to figure out what. Can you find the hidden clues in your home to find out what is really going on before the time runs out?<br/><br/>This text adventure game was made for the Intro to Game Design and Implementation class at Case Western Reserve University for Spring 2019.]]></description>
+    <defaultforeground>Black</defaultforeground>
+    <defaultbackground>Ivory</defaultbackground>
     <pov type="object">player</pov>
     <start type="script">
       create exit ("Stay", Stay, Yes)
@@ -38,8 +40,6 @@
       create exit ("Replay the game", Enter the cave, Chapter 1)
       create exit ("Replay the game", Enter, Chapter 1)
     </start>
-    <defaultforeground>Coral</defaultforeground>
-    <defaultbackground>Ivory</defaultbackground>
   </game>
   <object name="Chapter 1">
     <inherit name="editor_room" />
